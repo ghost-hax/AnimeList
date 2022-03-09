@@ -23,7 +23,7 @@ protocol Networkable {
     func get<T:Decodable>(_ apiRequest:ApiRequestType, type:T.Type, completionHandler:@escaping(Result<T, ServiceError>)->Void)
 }
 
-class Networking: Networkable {
+class Networking:NSObject, Networkable {
     
     func doApiCall<T:Decodable>(apiRequest: ApiRequestType, type:T.Type) -> Future<T, ServiceError> {
         
@@ -81,4 +81,35 @@ class Networking: Networkable {
         dataTask.resume()
     }
     
+}
+
+extension Networking:URLSessionDelegate {
+    
+    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        
+        guard let serverTrust =  challenge.protectionSpace.serverTrust else {
+            completionHandler(.cancelAuthenticationChallenge, nil)
+            return
+        }
+        guard  let serverCertificate = SecTrustCopyCertificateChain(serverTrust) else {
+            completionHandler(.cancelAuthenticationChallenge, nil)
+            return
+        }
+        
+        let serrverCertificateData:NSData = SecCertificateCopyData(serverCertificate as! SecCertificate)//changing type into NSData
+        
+        
+        guard let path  = Bundle.main.path(forResource:"google", ofType:"cer") else {
+            completionHandler(.cancelAuthenticationChallenge, nil)
+            return
+        }
+        
+       let localSertificate =  NSData(contentsOfFile: path)//changing type into NSData
+        
+        if serrverCertificateData.isEqual(to: localSertificate as! Data) {
+            completionHandler(.useCredential, nil)
+        }else {
+            completionHandler(.cancelAuthenticationChallenge, nil)
+        }
+    }
 }

@@ -113,7 +113,7 @@ extension ViewController:UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? TableViewCell else{return UITableViewCell()}
        
-        if let staff = viewModel.getDataValues(index: indexPath.row) { cell.setData(staff: staff)}
+        if let data = viewModel.getDataValues(index: indexPath.row) { cell.setData(data: data)}
         return cell
     }
     
@@ -122,8 +122,8 @@ extension ViewController:UITableViewDataSource {
 extension ViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let staff = viewModel.getDataValues(index: indexPath.row) {
-            performSegue(withIdentifier: "StaffDetails", sender: staff)
+        if let data = viewModel.getDataValues(index: indexPath.row) {
+            performSegue(withIdentifier: "Page2", sender: data)
         }
     }
 }

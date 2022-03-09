@@ -9,7 +9,7 @@ import XCTest
 @testable import APICall
 
 
-class StaffAndRoomsTests: XCTestCase {
+class ApiCallTest: XCTestCase {
     
     var viewModel: ViewModelType!
     override func setUpWithError() throws {
@@ -22,7 +22,7 @@ class StaffAndRoomsTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func testFetchStaff_success() {
+    func testFetch_success() {
         
         let request = ApiRequest(baseUrl:"", path: "")
         viewModel.fetch(request: request)
@@ -30,7 +30,7 @@ class StaffAndRoomsTests: XCTestCase {
         XCTAssertEqual(viewModel.dataCount , 13)
     }
     
-    func testFetchStaff_failure() {
+    func testFetch_failure() {
         
         let request = ApiRequest(baseUrl:"", path: "failure_response")
         viewModel.fetch(request: request)
@@ -38,7 +38,7 @@ class StaffAndRoomsTests: XCTestCase {
         XCTAssertEqual(viewModel.dataCount , 0)
     }
 
-    func testGetStaff() {
+    func testGet() {
         
         var data = viewModel.getDataValues(index: 2)
         

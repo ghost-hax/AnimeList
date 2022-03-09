@@ -73,11 +73,11 @@ class TableViewCell:UITableViewCell{
         label1.text = ""
     }
     
-    func setData(staff: ModelValue) {
-        label.text = staff.animeId
-        label1.text = staff.animeName
-        label2.text = staff.animeImg
-        setupURLImage(imageURL: staff.animeImg)
+    func setData(data: ModelValue) {
+        label.text = data.animeId
+        label1.text = data.animeName
+        label2.text = data.animeImg
+        setupURLImage(imageURL: data.animeImg)
     }
     
     func setUpUI() {

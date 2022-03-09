@@ -57,7 +57,7 @@ final class ViewModel: ViewModelType {
     func getRequest(apiRequest: ApiRequestType) {
         
         state = ViewState.loading
-        let publisher =   networkManager.doApiCall(apiRequest: apiRequest, type:Model.self)//self.repository.getMovies(apiRequest: apiRequest)
+        let publisher =   networkManager.doApiCall(apiRequest: apiRequest, type:Model.self)//self.repository.getRepository(apiRequest: apiRequest)
         
         let cancalable = publisher.sink { [weak self ]completion in
             switch completion {
@@ -80,16 +80,16 @@ final class ViewModel: ViewModelType {
             return nil
         }
         
-        guard let staffModel = data?.data[index]
+        guard let dataModel = data?.data[index]
         else { return ModelValue(
                                     animeId: "",
                                     animeName:"",
                                     animeImg: "")}
         
         return ModelValue(
-                          animeId: "\(staffModel.animeId)" ,
-                          animeName: staffModel.animeName ,
-                          animeImg: staffModel.animeImg )
+                          animeId: "\(dataModel.animeId)" ,
+                          animeName: dataModel.animeName ,
+                          animeImg: dataModel.animeImg )
         
     }
     
@@ -99,8 +99,8 @@ final class ViewModel: ViewModelType {
             networkManager.get(request, type: Model.self) {[weak self] result in
                 
                 switch result {
-                    case .success(let staffs) :
-                        self?.data = staffs
+                    case .success(let data) :
+                        self?.data = data
                         self?.delegate?.refreshUI()
                     case .failure(_) :
                         self?.delegate?.showError()
