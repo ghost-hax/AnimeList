@@ -17,6 +17,14 @@
 		E6C64B2527D7A50E004675CA /* APICallTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C64B2427D7A50E004675CA /* APICallTests.swift */; };
 		E6C64B2F27D7A50E004675CA /* APICallUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C64B2E27D7A50E004675CA /* APICallUITests.swift */; };
 		E6C64B3127D7A50E004675CA /* APICallUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C64B3027D7A50E004675CA /* APICallUITestsLaunchTests.swift */; };
+		E6C64B4227D8A5FE004675CA /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C64B4127D8A5FE004675CA /* ViewModel.swift */; };
+		E6C64B4427D8A630004675CA /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C64B4327D8A630004675CA /* Networking.swift */; };
+		E6C64B4627D8BC2F004675CA /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C64B4527D8BC2F004675CA /* Model.swift */; };
+		E6C64B4827D8BF5F004675CA /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C64B4727D8BF5F004675CA /* ApiClient.swift */; };
+		E6C64B4A27D8D4C0004675CA /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C64B4927D8D4C0004675CA /* TableViewCell.swift */; };
+		E6C64B4C27D8D5D9004675CA /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C64B4B27D8D5D9004675CA /* ImageDownloader.swift */; };
+		E6C64B4E27D90B74004675CA /* Anime.json in Resources */ = {isa = PBXBuildFile; fileRef = E6C64B4D27D90B74004675CA /* Anime.json */; };
+		E6C64B5127D90E9D004675CA /* MockNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C64B5027D90E9D004675CA /* MockNetwork.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +59,14 @@
 		E6C64B2A27D7A50E004675CA /* APICallUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APICallUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6C64B2E27D7A50E004675CA /* APICallUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICallUITests.swift; sourceTree = "<group>"; };
 		E6C64B3027D7A50E004675CA /* APICallUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICallUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E6C64B4127D8A5FE004675CA /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		E6C64B4327D8A630004675CA /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		E6C64B4527D8BC2F004675CA /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		E6C64B4727D8BF5F004675CA /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		E6C64B4927D8D4C0004675CA /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		E6C64B4B27D8D5D9004675CA /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		E6C64B4D27D90B74004675CA /* Anime.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Anime.json; sourceTree = "<group>"; };
+		E6C64B5027D90E9D004675CA /* MockNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetwork.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,9 +117,12 @@
 		E6C64B0927D7A509004675CA /* APICall */ = {
 			isa = PBXGroup;
 			children = (
+				E6C64B3D27D7A51A004675CA /* Networking */,
+				E6C64B3E27D7A52B004675CA /* Models */,
+				E6C64B3F27D7A540004675CA /* ViewModels */,
+				E6C64B4027D80617004675CA /* Views */,
 				E6C64B0A27D7A509004675CA /* AppDelegate.swift */,
 				E6C64B0C27D7A509004675CA /* SceneDelegate.swift */,
-				E6C64B0E27D7A509004675CA /* ViewController.swift */,
 				E6C64B1027D7A509004675CA /* Main.storyboard */,
 				E6C64B1627D7A50E004675CA /* Assets.xcassets */,
 				E6C64B1827D7A50E004675CA /* LaunchScreen.storyboard */,
@@ -116,7 +135,9 @@
 		E6C64B2327D7A50E004675CA /* APICallTests */ = {
 			isa = PBXGroup;
 			children = (
+				E6C64B4F27D90C23004675CA /* Json */,
 				E6C64B2427D7A50E004675CA /* APICallTests.swift */,
+				E6C64B5027D90E9D004675CA /* MockNetwork.swift */,
 			);
 			path = APICallTests;
 			sourceTree = "<group>";
@@ -128,6 +149,49 @@
 				E6C64B3027D7A50E004675CA /* APICallUITestsLaunchTests.swift */,
 			);
 			path = APICallUITests;
+			sourceTree = "<group>";
+		};
+		E6C64B3D27D7A51A004675CA /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				E6C64B4327D8A630004675CA /* Networking.swift */,
+				E6C64B4727D8BF5F004675CA /* ApiClient.swift */,
+				E6C64B4B27D8D5D9004675CA /* ImageDownloader.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		E6C64B3E27D7A52B004675CA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E6C64B4527D8BC2F004675CA /* Model.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E6C64B3F27D7A540004675CA /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				E6C64B4127D8A5FE004675CA /* ViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		E6C64B4027D80617004675CA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E6C64B0E27D7A509004675CA /* ViewController.swift */,
+				E6C64B4927D8D4C0004675CA /* TableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E6C64B4F27D90C23004675CA /* Json */ = {
+			isa = PBXGroup;
+			children = (
+				E6C64B4D27D90B74004675CA /* Anime.json */,
+			);
+			path = Json;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,6 +308,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6C64B4E27D90B74004675CA /* Anime.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,8 +326,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6C64B4627D8BC2F004675CA /* Model.swift in Sources */,
+				E6C64B4227D8A5FE004675CA /* ViewModel.swift in Sources */,
 				E6C64B0F27D7A509004675CA /* ViewController.swift in Sources */,
+				E6C64B4A27D8D4C0004675CA /* TableViewCell.swift in Sources */,
+				E6C64B4827D8BF5F004675CA /* ApiClient.swift in Sources */,
 				E6C64B0B27D7A509004675CA /* AppDelegate.swift in Sources */,
+				E6C64B4C27D8D5D9004675CA /* ImageDownloader.swift in Sources */,
+				E6C64B4427D8A630004675CA /* Networking.swift in Sources */,
 				E6C64B1527D7A509004675CA /* APICall.xcdatamodeld in Sources */,
 				E6C64B0D27D7A509004675CA /* SceneDelegate.swift in Sources */,
 			);
@@ -272,6 +343,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6C64B5127D90E9D004675CA /* MockNetwork.swift in Sources */,
 				E6C64B2527D7A50E004675CA /* APICallTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
