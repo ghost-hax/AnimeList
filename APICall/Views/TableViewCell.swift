@@ -90,26 +90,30 @@ class TableViewCell:UITableViewCell{
         stack.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: 10.0).isActive = true
         
         stack.alignment = .center
-        stack.distribution = .fill//Equally
+        stack.distribution = .fill
         stack.contentMode = .scaleToFill
+        stack.spacing = 10.0
         stack.heightAnchor.constraint(greaterThanOrEqualToConstant: 60.0).isActive = true
         stack.setContentHuggingPriority(UILayoutPriority.init(rawValue: 251), for: NSLayoutConstraint.Axis.horizontal)
         
         image.translatesAutoresizingMaskIntoConstraints = false
         image.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10.0).isActive = true
         image.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10.0).isActive = true
+        image.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10.0).isActive = true
         image.heightAnchor.constraint(equalToConstant: 100.0).isActive = true
         image.widthAnchor.constraint(equalToConstant: 100.0).isActive = true
         image.setContentHuggingPriority(UILayoutPriority.init(rawValue: 251), for: NSLayoutConstraint.Axis.horizontal)
         
-        stack1.addArrangedSubview(label)
+//        stack1.addArrangedSubview(label)
         stack1.addArrangedSubview(label1)
 //        stack1.addArrangedSubview(label2)
-//        stack1.leadingAnchor.constraint(equalTo: self.stack.leadingAnchor, constant: 10.0).isActive = true
+        stack1.leadingAnchor.constraint(equalTo: self.stack.trailingAnchor, constant: 10.0).isActive = true
         stack1.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10.0).isActive = true
         stack1.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10.0).isActive = true
-        stack1.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: 10.0).isActive = true
-        stack1.distribution = .fill//Equally
+        stack1.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10.0).isActive = true
+        stack1.alignment = .leading
+        stack1.distribution = .equalSpacing
+        stack1.contentMode = .scaleAspectFit
         stack1.heightAnchor.constraint(greaterThanOrEqualToConstant: 60.0).isActive = true
         stack1.setContentHuggingPriority(UILayoutPriority.init(rawValue: 250), for: NSLayoutConstraint.Axis.horizontal)
       }

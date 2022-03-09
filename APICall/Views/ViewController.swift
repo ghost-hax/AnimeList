@@ -16,7 +16,7 @@ protocol ViewControllerType: AnyObject{
 
 class ViewController: UIViewController {
     
-    private var viewModel:ViewPresenterType!
+    private var viewModel:ViewModelType!
     private var bindings = Set<AnyCancellable>()
     
     var activityIndicator = UIActivityIndicatorView()

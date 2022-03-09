@@ -32,6 +32,24 @@ class MockNetworkManager: Networkable {
     }
     
     func get<T>(_ apiRequest: ApiRequestType, type: T.Type, completionHandler: @escaping (Result<T, ServiceError>) -> Void) where T : Decodable {
-        <#code#>
+       
+        let bundle = Bundle(for:MockNetworkManager.self)
+        
+        guard let url = bundle.url(forResource:apiRequest.path, withExtension:"json"),
+              let data = try? Data(contentsOf: url) else {
+                  completionHandler(.failure(ServiceError.serviceNotAvailable))
+
+                  return
+              }
+        
+        do {
+            let decodedResopnce = try JSONDecoder().decode(T.self, from: data)
+            completionHandler(.success(decodedResopnce))
+            
+        }catch {
+            completionHandler(.failure(ServiceError.parsingFailed))
+        }
+        
     }
+    
 }

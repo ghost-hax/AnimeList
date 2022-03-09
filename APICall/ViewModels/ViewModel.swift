@@ -21,7 +21,7 @@ struct ModelValue {
     var animeImg: String
 }
 
-protocol ViewPresenterType: AnyObject {
+protocol ViewModelType: AnyObject {
     
     var stateBinding: Published<ViewState>.Publisher { get }
     var data:Model? { get }
@@ -32,7 +32,7 @@ protocol ViewPresenterType: AnyObject {
     func getDataValues(index:Int)-> ModelValue?
 }
 
-final class ViewModel: ViewPresenterType {
+final class ViewModel: ViewModelType {
     
     var stateBinding: Published<ViewState>.Publisher{ $state }
     private var cancellables:Set<AnyCancellable> = Set()
