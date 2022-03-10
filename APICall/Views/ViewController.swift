@@ -34,8 +34,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        
         self.activityIndicator.startAnimating()
+        setupUI()
         
         viewModel = ViewModel(delegate:self)
         
@@ -64,7 +65,6 @@ class ViewController: UIViewController {
     }
     
     private func setupBindings() {
-//        bindSearchTextFieldToViewModel()
         bindViewModelState()
     }
     
@@ -113,7 +113,7 @@ extension ViewController:UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? TableViewCell else{return UITableViewCell()}
        
-        if let data = viewModel.getDataValues(index: indexPath.row) { cell.setData(data: data)}
+        if let ModelValue = viewModel.getDataValues(index: indexPath.row) { cell.setData(data: ModelValue)}
         return cell
     }
     

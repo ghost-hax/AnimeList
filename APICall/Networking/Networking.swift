@@ -83,33 +83,3 @@ class Networking:NSObject, Networkable {
     
 }
 
-extension Networking:URLSessionDelegate {
-    
-    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        
-        guard let serverTrust =  challenge.protectionSpace.serverTrust else {
-            completionHandler(.cancelAuthenticationChallenge, nil)
-            return
-        }
-        guard  let serverCertificate = SecTrustCopyCertificateChain(serverTrust) else {
-            completionHandler(.cancelAuthenticationChallenge, nil)
-            return
-        }
-        
-        let serrverCertificateData:NSData = SecCertificateCopyData(serverCertificate as! SecCertificate)//changing type into NSData
-        
-        
-        guard let path  = Bundle.main.path(forResource:"google", ofType:"cer") else {
-            completionHandler(.cancelAuthenticationChallenge, nil)
-            return
-        }
-        
-       let localSertificate =  NSData(contentsOfFile: path)//changing type into NSData
-        
-        if serrverCertificateData.isEqual(to: localSertificate as! Data) {
-            completionHandler(.useCredential, nil)
-        }else {
-            completionHandler(.cancelAuthenticationChallenge, nil)
-        }
-    }
-}
