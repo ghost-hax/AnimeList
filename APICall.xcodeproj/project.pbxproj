@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E64A327827E1263100271241 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64A327727E1263100271241 /* Coordinator.swift */; };
 		E6C64B0B27D7A509004675CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C64B0A27D7A509004675CA /* AppDelegate.swift */; };
 		E6C64B0D27D7A509004675CA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C64B0C27D7A509004675CA /* SceneDelegate.swift */; };
 		E6C64B0F27D7A509004675CA /* AnimeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C64B0E27D7A509004675CA /* AnimeListView.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E64A327727E1263100271241 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		E6C64B0727D7A509004675CA /* APICall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = APICall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6C64B0A27D7A509004675CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E6C64B0C27D7A509004675CA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 		E64A327627E11DEC00271241 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
+				E64A327727E1263100271241 /* Coordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 			files = (
 				E6C64B4627D8BC2F004675CA /* AnimeList.swift in Sources */,
 				E6C64B4227D8A5FE004675CA /* AnimeListViewModel.swift in Sources */,
+				E64A327827E1263100271241 /* Coordinator.swift in Sources */,
 				E6C64B0F27D7A509004675CA /* AnimeListView.swift in Sources */,
 				E6C64B4A27D8D4C0004675CA /* AnimeListTableViewCell.swift in Sources */,
 				E6C64B4827D8BF5F004675CA /* ApiClient.swift in Sources */,

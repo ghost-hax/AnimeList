@@ -11,23 +11,26 @@ import Foundation
 import Combine
 
 class MockNetworkManager: NetworkManagerType {
+    
     func apiCall<T>(apiRequest: ApiRequestType, type: T.Type) -> Future<T, ServiceError> where T : Decodable {
         
         return Future { promise in
             
             let bundle = Bundle(for:MockNetworkManager.self)
             
-            guard let url = bundle.url(forResource:apiRequest.path, withExtension:"json"),
-                  let data = //try? Data(contentsOf: url)
-                    try? T(from: url as! Decoder)
-//                      try? JSONDecoder().decode(T.self, from: url)
-
-            else {
-                promise(.failure(ServiceError.dataNotFound))
-          
-                return
+            guard let url = bundle.url(forResource:apiRequest.baseUrl, withExtension:"json"),
+                  let data = try? Data(contentsOf: url) else {
+                        promise(.failure(ServiceError.dataNotFound))
+                        return
+                    }
+            
+            do{
+                let decodedResopnce = try JSONDecoder().decode(T.self, from: data)
+                promise(.success(decodedResopnce))
+                
+            }catch{
+                promise(.failure(ServiceError.parsingFailed))
             }
-            promise(.success(data))
         }
     }
     
@@ -35,10 +38,9 @@ class MockNetworkManager: NetworkManagerType {
        
         let bundle = Bundle(for:MockNetworkManager.self)
         
-        guard let url = bundle.url(forResource:apiRequest.path, withExtension:"json"),
+        guard let url = bundle.url(forResource:apiRequest.baseUrl, withExtension:"json"),
               let data = try? Data(contentsOf: url) else {
                   completionHandler(.failure(ServiceError.serviceNotAvailable))
-
                   return
               }
         
@@ -49,7 +51,6 @@ class MockNetworkManager: NetworkManagerType {
         }catch {
             completionHandler(.failure(ServiceError.parsingFailed))
         }
-        
     }
     
 }

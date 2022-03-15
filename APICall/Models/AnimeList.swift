@@ -25,9 +25,3 @@ struct Animes: Decodable {
         case animeImg = "anime_img"
     }
 }
-
-struct AnimeValue {
-    var animeId: String
-    var animeName: String
-    var animeImg: String
-}

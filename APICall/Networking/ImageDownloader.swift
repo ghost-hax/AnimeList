@@ -68,8 +68,8 @@ class ImageDownloader:ImageDownLoaderType {
 
               completion(data)
         }.resume()
-
     }
+    
 }
 
 
