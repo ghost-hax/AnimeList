@@ -8,30 +8,21 @@
 import Foundation
 import Combine
 
-enum ServiceError: Error {
-    case serviceNotAvailable
-    case parsingFailed
-    case requestNotFormatted
-    case failedToCreateRequest
-    case dataNotFound
-    case unknown
-}
-
-protocol Networkable {
+protocol NetworkManagerType {
     @available(iOS 13.0, *)
-    func doApiCall<T:Decodable>(apiRequest:ApiRequestType, type:T.Type)-> Future<T, ServiceError>
-    func get<T:Decodable>(_ apiRequest:ApiRequestType, type:T.Type, completionHandler:@escaping(Result<T, ServiceError>)->Void)
+    func apiCall<T:Decodable>(apiRequest:ApiRequestType, type:T.Type)-> Future<T, ServiceError>
+    func preIOS13ApiCall<T:Decodable>(_ apiRequest:ApiRequestType, type:T.Type, completionHandler:@escaping(Result<T, ServiceError>)->Void)
 }
 
-class Networking:NSObject, Networkable {
+class NetworkManager:NSObject, NetworkManagerType {
     
-    func doApiCall<T:Decodable>(apiRequest: ApiRequestType, type:T.Type) -> Future<T, ServiceError> {
+    func apiCall<T:Decodable>(apiRequest: ApiRequestType, type:T.Type) -> Future<T, ServiceError> {
         
         return Future { promise in
             
             // URLSessonDataTask
             let urlSession = URLSession.shared
-            guard let url = URL(string:apiRequest.baseUrl.appending(apiRequest.path)) else {
+            guard let url = URL(string:apiRequest.baseUrl) else {
                 promise(.failure(ServiceError.requestNotFormatted))
                 print("url path error")
                 return
@@ -56,12 +47,14 @@ class Networking:NSObject, Networkable {
             dataTask.resume()
         }
     }
+
     
-    func get<T>(_ apiRequest: ApiRequestType, type: T.Type, completionHandler: @escaping (Result<T, ServiceError>) -> Void) where T : Decodable {
+    // MARK: - for Older iOS versions (Pre iOS 13)
+    func preIOS13ApiCall<T>(_ apiRequest: ApiRequestType, type: T.Type, completionHandler: @escaping (Result<T, ServiceError>) -> Void) where T : Decodable {
         
         // URLSessonDataTask
         let urlSession = URLSession.shared
-        guard let url = URL(string:apiRequest.baseUrl.appending(apiRequest.path)) else {
+        guard let url = URL(string:apiRequest.baseUrl) else {
             completionHandler(.failure(ServiceError.requestNotFormatted))
             return
         }
@@ -83,3 +76,12 @@ class Networking:NSObject, Networkable {
     
 }
 
+
+enum ServiceError: Error {
+    case serviceNotAvailable
+    case parsingFailed
+    case requestNotFormatted
+    case failedToCreateRequest
+    case dataNotFound
+    case unknown
+}

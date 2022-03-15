@@ -11,47 +11,62 @@ import XCTest
 
 class ApiCallTest: XCTestCase {
     
-    var viewModel: ViewModelType!
+    var testAnimeListViewModel: AnimeListViewModelType!
     override func setUpWithError() throws {
-        let viewController = ViewController()
+        let viewController = AnimeListView()
         let mockNetworkMaanger = MockNetworkManager()
-        viewModel = ViewModel(networkManager: mockNetworkMaanger, delegate: viewController)
+        testAnimeListViewModel = AnimeListViewModel(networkManager: mockNetworkMaanger, delegate: viewController)
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-    
-    func testFetch_success() {
+    func testGet_success() {
         
-        let request = ApiRequest(baseUrl:"", path: "")
-        viewModel.fetch(request: request)
+        let request = ApiRequest(baseUrl:"")
+        testAnimeListViewModel.getRequest(apiRequest: request)
          
-        XCTAssertEqual(viewModel.dataCount , 13)
+        XCTAssertEqual(testAnimeListViewModel.animeListCount , 13)
     }
     
-    func testFetch_failure() {
+    func testGet_failure() {
         
-        let request = ApiRequest(baseUrl:"", path: "failure_response")
-        viewModel.fetch(request: request)
+        let request = ApiRequest(baseUrl:"incorrect_url")
+        testAnimeListViewModel.getRequest(apiRequest: request)
          
-        XCTAssertEqual(viewModel.dataCount , 0)
+        XCTAssertEqual(testAnimeListViewModel.animeListCount , 0)
+    }
+    
+    func testPreIOS13Get_success() {
+        
+        let request = ApiRequest(baseUrl:"")
+        testAnimeListViewModel.preIOS13GetRequest(apiRequest: request)
+         
+        XCTAssertEqual(testAnimeListViewModel.animeListCount , 13)
+    }
+    
+    func testPreIOS13Get_failure() {
+        
+        let request = ApiRequest(baseUrl:"incorrect_url")
+        testAnimeListViewModel.preIOS13GetRequest(apiRequest: request)
+         
+        XCTAssertEqual(testAnimeListViewModel.animeListCount , 0)
     }
 
-    func testGet() {
+    func testGet_successForSpecificValue() {
         
-        var data = viewModel.getDataValues(index: 2)
-        
-        XCTAssertNil(nil)
-        
-         data = viewModel.getDataValues(index: -1)
+        var data = testAnimeListViewModel.getDataValues(index: 2)
         
         XCTAssertNil(nil)
         
-        let request = ApiRequest(baseUrl:"", path: "")
-        viewModel.fetch(request: request)
+         data = testAnimeListViewModel.getDataValues(index: -1)
+        
+        XCTAssertNil(nil)
+        
+        let request = ApiRequest(baseUrl:"")
+        testAnimeListViewModel.preIOS13GetRequest(apiRequest: request)
          
-        data = viewModel.getDataValues(index: 0)
+        data = testAnimeListViewModel.getDataValues(index: 0)
        
         XCTAssertNotNil(data)
         

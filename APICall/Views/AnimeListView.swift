@@ -8,29 +8,29 @@
 import UIKit
 import Combine
 
-protocol ViewControllerType: AnyObject{
+protocol AnimeListViewType: AnyObject{
     func refreshUI()
     func showError()
     
 }
 
-class ViewController: UIViewController {
+class AnimeListView: UIViewController {
     
-    private var viewModel:ViewModelType!
+    private var animeListViewModel:AnimeListViewModelType!
     private var bindings = Set<AnyCancellable>()
     
     var activityIndicator = UIActivityIndicatorView()
+    
     lazy var tableView:UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
-//        tableView.delegate = self
         tableView.isHidden = true
         return tableView
     }()
     
     var cellID:String = "Cell"
-    let request = ApiRequest(baseUrl: EndPoint.baseUrl, path: "")
+    let request = ApiRequest(baseUrl: EndPoint.baseUrl)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,13 +38,13 @@ class ViewController: UIViewController {
         self.activityIndicator.startAnimating()
         setupUI()
         
-        viewModel = ViewModel(delegate:self)
+        animeListViewModel = AnimeListViewModel(delegate:self)
         
         if #available(iOS 13.0, *) {
-            viewModel.getRequest(apiRequest: request)
+            animeListViewModel.getRequest(apiRequest: request)
             setupBindings()
         }else {
-            viewModel.fetch(request: request)
+            animeListViewModel.preIOS13GetRequest(apiRequest: request)
         }
     }
     
@@ -57,7 +57,7 @@ class ViewController: UIViewController {
             activityIndicator.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 10.0).isActive = true
         self.view.addSubview(tableView)
             tableView.translatesAutoresizingMaskIntoConstraints = false
-            tableView.register(TableViewCell.self, forCellReuseIdentifier:cellID)
+            tableView.register(AnimeListTableViewCell.self, forCellReuseIdentifier:cellID)
             tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0.0).isActive = true
             tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -0.0).isActive = true
             tableView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 10.0).isActive = true
@@ -69,7 +69,7 @@ class ViewController: UIViewController {
     }
     
     private func bindViewModelState() {
-      let cancellable =  viewModel.stateBinding.sink { completion in
+      let cancellable =  animeListViewModel.stateBinding.sink { completion in
             
         } receiveValue: { [weak self] launchState in
             DispatchQueue.main.async {
@@ -95,7 +95,7 @@ class ViewController: UIViewController {
     }
     
     func showAlert(message:String) {
-        let alertViewController = UIAlertController(title:"Message", message:message, preferredStyle: UIAlertController.Style.alert)
+        let alertViewController = UIAlertController(title:"Error Connecting", message:message, preferredStyle: UIAlertController.Style.alert)
         let alertAction = UIAlertAction(title:"Ok", style: UIAlertAction.Style.cancel, handler: { (alert) in
             alertViewController.dismiss(animated:true, completion:nil)
         })
@@ -104,37 +104,28 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController:UITableViewDataSource {
+extension AnimeListView:UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.dataCount
+        return animeListViewModel.animeListCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? TableViewCell else{return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? AnimeListTableViewCell else{return UITableViewCell()}
        
-        if let ModelValue = viewModel.getDataValues(index: indexPath.row) { cell.setData(data: ModelValue)}
+        if let ModelValue = animeListViewModel.getDataValues(index: indexPath.row) { cell.setData(data: ModelValue)}
         return cell
     }
     
 }
 
-extension ViewController: UITableViewDelegate{
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let data = viewModel.getDataValues(index: indexPath.row) {
-            performSegue(withIdentifier: "Page2", sender: data)
-        }
-    }
-}
-
-extension ViewController: ViewControllerType {
+extension AnimeListView: AnimeListViewType {
     func refreshUI() {
         DispatchQueue.main.async {
             self.tableView.isHidden = false
             self.activityIndicator.stopAnimating()
             self.tableView.reloadData()
-//            self.activityIndicator.isHidden = true
+            self.activityIndicator.isHidden = true
         }
     }
     

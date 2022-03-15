@@ -10,8 +10,8 @@ import Foundation
 @testable import APICall
 import Combine
 
-class MockNetworkManager: Networkable {
-    func doApiCall<T>(apiRequest: ApiRequestType, type: T.Type) -> Future<T, ServiceError> where T : Decodable {
+class MockNetworkManager: NetworkManagerType {
+    func apiCall<T>(apiRequest: ApiRequestType, type: T.Type) -> Future<T, ServiceError> where T : Decodable {
         
         return Future { promise in
             
@@ -31,7 +31,7 @@ class MockNetworkManager: Networkable {
         }
     }
     
-    func get<T>(_ apiRequest: ApiRequestType, type: T.Type, completionHandler: @escaping (Result<T, ServiceError>) -> Void) where T : Decodable {
+    func preIOS13ApiCall<T>(_ apiRequest: ApiRequestType, type: T.Type, completionHandler: @escaping (Result<T, ServiceError>) -> Void) where T : Decodable {
        
         let bundle = Bundle(for:MockNetworkManager.self)
         

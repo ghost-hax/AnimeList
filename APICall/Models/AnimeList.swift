@@ -7,11 +7,10 @@
 
 import Foundation
 
-struct Model: Decodable {
+struct AnimeList: Decodable {
     
     var success:Bool
     var data: [Animes]
-    
 }
 
 struct Animes: Decodable {
@@ -25,4 +24,10 @@ struct Animes: Decodable {
         case animeName = "anime_name"
         case animeImg = "anime_img"
     }
+}
+
+struct AnimeValue {
+    var animeId: String
+    var animeName: String
+    var animeImg: String
 }
