@@ -7,7 +7,7 @@
 
 import Foundation
 
-@testable import APICall
+@testable import AnimeList
 import Combine
 
 class MockNetworkManager: NetworkManagerType {

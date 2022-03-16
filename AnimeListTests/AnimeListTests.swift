@@ -6,10 +6,10 @@
 //
 
 import XCTest
-@testable import APICall
+@testable import AnimeList
 
 
-class ApiCallTest: XCTestCase {
+class AnimeListTests: XCTestCase {
     
     var testAnimeListViewModel: AnimeListViewModelType!
     override func setUpWithError() throws {
