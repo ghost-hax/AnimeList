@@ -14,11 +14,12 @@ protocol AnimeListViewType: AnyObject{
     
 }
 
-class AnimeListView: UIViewController {
+class AnimeListView: UIViewController, Storyboarded{
     
-    private var animeListViewModel:AnimeListViewModelType!
     private var bindings = Set<AnyCancellable>()
     
+    var coordinator:CoordinatorType!
+    var animeListViewModel:AnimeListViewModelType!
     var activityIndicator = UIActivityIndicatorView()
     
     lazy var tableView:UITableView = {

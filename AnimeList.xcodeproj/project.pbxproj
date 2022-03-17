@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E64A327827E1263100271241 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64A327727E1263100271241 /* Coordinator.swift */; };
+		E66449F327E3A16C00213D0E /* Storyboarded+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66449F227E3A16C00213D0E /* Storyboarded+Extension.swift */; };
 		E6C64B0B27D7A509004675CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C64B0A27D7A509004675CA /* AppDelegate.swift */; };
 		E6C64B0D27D7A509004675CA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C64B0C27D7A509004675CA /* SceneDelegate.swift */; };
 		E6C64B0F27D7A509004675CA /* AnimeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C64B0E27D7A509004675CA /* AnimeListView.swift */; };
@@ -46,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		E64A327727E1263100271241 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		E66449F227E3A16C00213D0E /* Storyboarded+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storyboarded+Extension.swift"; sourceTree = "<group>"; };
 		E6C64B0727D7A509004675CA /* AnimeList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimeList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6C64B0A27D7A509004675CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E6C64B0C27D7A509004675CA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +104,22 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
+		E66449F027E3A13300213D0E /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				E66449F127E3A13E00213D0E /* Extensions */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		E66449F127E3A13E00213D0E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E66449F227E3A16C00213D0E /* Storyboarded+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		E6C64AFE27D7A509004675CA = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +143,7 @@
 		E6C64B0927D7A509004675CA /* AnimeList */ = {
 			isa = PBXGroup;
 			children = (
+				E66449F027E3A13300213D0E /* Utility */,
 				E64A327627E11DEC00271241 /* Coordinator */,
 				E6C64B3D27D7A51A004675CA /* Networking */,
 				E6C64B3E27D7A52B004675CA /* Models */,
@@ -341,6 +360,7 @@
 				E6C64B4A27D8D4C0004675CA /* AnimeListTableViewCell.swift in Sources */,
 				E6C64B4827D8BF5F004675CA /* ApiClient.swift in Sources */,
 				E6C64B0B27D7A509004675CA /* AppDelegate.swift in Sources */,
+				E66449F327E3A16C00213D0E /* Storyboarded+Extension.swift in Sources */,
 				E6C64B4C27D8D5D9004675CA /* ImageDownloader.swift in Sources */,
 				E6C64B4427D8A630004675CA /* NetworkManager.swift in Sources */,
 				E6C64B0D27D7A509004675CA /* SceneDelegate.swift in Sources */,
