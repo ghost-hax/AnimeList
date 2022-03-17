@@ -2,8 +2,8 @@
 
 # Functionalities
 
-1.This app allows the user to view a list of Animes which are displayed with their title, the name of the show, and an image representing their show.
-2.This app uses 2 api calls, one for current versions of iOS and one for versions older than iOS 13
+1. This app allows the user to view a list of Animes which are displayed with their title, the name of the show, and an image representing their show.
+2. This app uses 2 api calls, one for current versions of iOS and one for versions older than iOS 13
 
 # Architecture
 
@@ -13,5 +13,5 @@
 
 # Testing
 
-1.Unit Test cases are there for the presenters
-2.Mocking and stubbing is used to test network layer
+1. Unit Test cases are there for the presenters
+2. Mocking and stubbing is used to test network layer
